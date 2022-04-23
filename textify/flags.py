@@ -14,18 +14,22 @@ def parseArguments():
     list = subparser.add_parser('list' , help = 'List all the texts currently in the database')
     pull = subparser.add_parser('pull' , help = 'Pulls all the data from the server')
     push =  subparser.add_parser('push' , help = 'Pushes any given data to the server')
+    show = subparser.add_parser('show' , help = "Shows ID of the user")
 
     push.add_argument('--type', type = str, required=True)
     push.add_argument('--content', type = str, required = True)
-    login.add_argument('--ID', type = float, required=False)
+
+    login.add_argument('--ID', type = str, required=False)
     args = parser.parse_args()
     parseHandler(args)
 
 def parseHandler(args):
     if args.command == 'login':
         print("Performing login from textify servers!")
-        # commands.Login(args.id)
-        commands.Login("")
+        if args.ID:
+            commands.Login(args.ID)
+        else:
+            commands.Login("")
     elif args.command == 'push':
         print("Pushing data to server")
         content_type = args.type
@@ -53,6 +57,10 @@ def parseHandler(args):
         # ]
         for i , text in enumerate(texts , 1):
             print("{}) Content: {}".format(i , text['content_data']))
+    elif args.command == 'show':
+        id = database.Get_ID()
+        print("ID: {}".format(id))
+        print("Do not share this with anyone!!!")
     else:
          print(BANNER)
          print('Version {}'.format(VERSION))

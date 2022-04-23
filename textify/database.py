@@ -24,7 +24,10 @@ def Get_ID():
     CheckConfigFile()
     with open(get_User_config_path()) as f:
         data = json.load(f)
-        return data['id']
+        if 'uid' in data:
+            return data['uid']
+        else:
+            return data['id']
 
 def SetID(config):
     Checkfolder()
@@ -61,5 +64,8 @@ def CheckDatabaseFile():
     if check == False:
         print("No database file found! Pull first!")
         sys.exit(1)
+def clearData():
+    SetDatabase({})
+    
         
         

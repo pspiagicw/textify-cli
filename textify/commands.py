@@ -25,6 +25,7 @@ def Push(payload):
         print("Push Unsucessfull!")
 
 def Login(id):
+    database.clearData()
     if id:
         config = dict(uid = id , timestamp = time.time())
         database.SetID(config)
