@@ -10,8 +10,7 @@ def Pull():
     r = requests.get(SERVER_URL + '/pull/' + ID)
     if r.status_code == 200:
         data = r.json()
-        payload = json.loads(data)
-        database.SetDatabase(payload)
+        database.SetDatabase(data)
     else:
         print("Failed!!!")
 
