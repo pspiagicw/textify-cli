@@ -3,7 +3,7 @@ from textify import database
 import time
 import json
 
-SERVER_URL = "https://pspiagicw-textify.herokuapp.com"
+SERVER_URL = "http://localhost:5000"
 
 def Pull():
     ID = database.Get_ID()
